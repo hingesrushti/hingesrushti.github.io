@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://hingesrushti.github.io/sitemap.xml
