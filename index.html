@@ -231,15 +231,17 @@ h3 { font: 600 22px/1.2 var(--display); margin: 0; letter-spacing: -0.01em; }
 .filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
 .filters button { font: 500 12px var(--mono); background: var(--sheet); color: var(--muted); border: 1px solid var(--rule); border-radius: 999px; padding: 6px 12px; cursor: pointer; }
 .filters button[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
-.projects { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.projects { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
 .proj { padding: 22px; display: flex; flex-direction: column; gap: 14px; transition: opacity .25s, filter .25s; }
 .proj.dim { opacity: .28; filter: grayscale(1); }
-.proj .stat { font: 800 44px/1 var(--display); color: var(--teal); letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
-.proj .stat small { display: block; font: 500 12px var(--mono); color: var(--muted); letter-spacing: 0; margin-top: 6px; }
+.proj .stat { align-self: flex-start; display: inline-flex; align-items: baseline; gap: 8px; flex-wrap: wrap; padding: 6px 10px; border-radius: 6px; background: var(--teal-soft); font: 500 12px var(--mono); color: var(--muted); }
+.proj .stat b { font: 700 15px var(--display); color: var(--teal); font-variant-numeric: tabular-nums; }
 .proj p { margin: 0; color: var(--muted); font-size: 15px; }
 .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; }
 .tags span { font: 11px var(--mono); padding: 2px 8px; border-radius: 4px; background: var(--paper); border: 1px solid var(--rule); }
 .tags span.on { background: var(--amber-soft); border-color: var(--amber); }
+.proj .repo { font: 600 12px var(--mono); color: var(--teal); text-decoration: none; }
+.proj .repo:hover { text-decoration: underline; }
 details { border-top: 1px solid var(--rule); padding-top: 10px; }
 summary { font: 600 12px var(--mono); color: var(--teal); cursor: pointer; }
 details ul { margin: 10px 0 0; padding-left: 18px; font-size: 14px; color: var(--muted); display: grid; gap: 6px; }
@@ -332,6 +334,7 @@ footer { margin-top: 28px; font: 12px var(--mono); color: var(--muted); text-ali
       <p class="lede">I sit between clinical, operational and executive teams and turn what they need into <strong>numbers that move</strong>: patient no-shows down about 70%, daily throughput up about 80%, and hours of manual reporting automated away with SQL, Python and dashboards people actually open.</p>
       <div class="contact-row">
         <a class="chip-btn" href="https://www.linkedin.com/in/srushti-hinge-4b64521a2/" target="_blank" rel="noopener"><span class="k">in/</span>LinkedIn</a>
+        <a class="chip-btn" href="https://github.com/hingesrushti" target="_blank" rel="noopener"><span class="k">gh/</span>GitHub</a>
         <button class="chip-btn" type="button" data-copy="hingesrushti13@gmail.com"><span class="k">@</span>Copy email</button>
         <a class="chip-btn" href="#contact"><span class="k">→</span>Get in touch</a>
       </div>
@@ -463,6 +466,7 @@ footer { margin-top: 28px; font: 12px var(--mono); color: var(--muted); text-ali
           <li><span>Google Advanced Data Analytics Specialization</span><span>Google</span></li>
           <li><span>Google AI Professional Certificate</span><span>Google</span></li>
           <li><span>Introduction to Modern Data Engineering with Snowflake</span><span>LinkedIn Learning</span></li>
+          <li><span>Databricks Certified Data Analyst Associate Cert Prep</span><span>Databricks</span></li>
         </ul>
       </div>
     </div>
@@ -477,6 +481,7 @@ footer { margin-top: 28px; font: 12px var(--mono); color: var(--muted); text-ali
       <div class="contact-list">
         <div class="cline"><span>hingesrushti13@gmail.com</span><button type="button" data-copy="hingesrushti13@gmail.com">Copy</button></div>
         <div class="cline"><a href="https://www.linkedin.com/in/srushti-hinge-4b64521a2/" target="_blank" rel="noopener">linkedin.com/in/srushti-hinge</a><span>↗</span></div>
+        <div class="cline"><a href="https://github.com/hingesrushti" target="_blank" rel="noopener">github.com/hingesrushti</a><span>↗</span></div>
         <div class="cline"><span>Jersey City, NJ</span><span>EST</span></div>
       </div>
     </div>
@@ -522,6 +527,10 @@ footer { margin-top: 28px; font: 12px var(--mono); color: var(--muted); text-ali
       blurb: "What actually drives occupancy in Paris: price, location and competition.",
       tools: ["R", "Python", "Power BI", "Statistics"],
       points: ["ANOVA plus Beta and Negative Binomial regression to isolate occupancy drivers.", "PCA, clustering and sentiment analysis on listings and reviews.", "Pricing recommendations, e.g. 15–20% increases on underpriced high-demand listings."] },
+    { id: "sales", name: "Sales Insights Dashboard", stat: "KPIs", statLbl: "performance · top sellers · trends",
+      blurb: "An interactive dashboard that helps sales teams and management track performance and spot trends.",
+      tools: ["Power BI", "SQL", "PostgreSQL", "Excel"],
+      points: ["Monitors sales performance metrics and KPIs in one place.", "Identifies top-selling products and recognizes sales trends over time.", "Gives decision-makers actionable insights through dynamic, interactive visual reports."] },
     { id: "mkt", name: "Marketing Channel Efficiency", stat: "50+", statLbl: "automated data-quality tests",
       blurb: "A governed warehouse and self-service dashboard for comparing marketing channel performance.",
       tools: ["Databricks", "SQL", "dbt", "Git"],
@@ -533,15 +542,16 @@ footer { margin-top: 28px; font: 12px var(--mono); color: var(--muted); text-ali
     { id: "rr", short: "RR Telecom", sub: "DA" },
     { id: "dental", short: "Dental age", sub: "project" },
     { id: "airbnb", short: "Airbnb Paris", sub: "project" },
-    { id: "mkt", short: "Marketing", sub: "project" }
+    { id: "mkt", short: "Marketing", sub: "project" },
+    { id: "sales", short: "Sales", sub: "project" }
   ];
   const skills = [
-    { name: "SQL", cat: "query", in: { rr: "automated six reports and joined billing, ops and subscriber data", dental: "data handling for the X-ray pipeline", mkt: "built governed marts in the warehouse" } },
+    { name: "SQL", cat: "query", in: { rr: "automated six reports and joined billing, ops and subscriber data", dental: "data handling for the X-ray pipeline", mkt: "built governed marts in the warehouse", sales: "PostgreSQL queries behind the sales KPIs" } },
     { name: "Python", cat: "language", in: { rr: "Pandas and NumPy report automation", dental: "the full PyTorch training pipeline", airbnb: "listing analysis alongside R" } },
     { name: "R", cat: "language", in: { airbnb: "ANOVA, Beta and Negative Binomial regression" } },
-    { name: "Power BI", cat: "bi", in: { rr: "dashboards for 15+ telecom KPIs", airbnb: "occupancy and pricing visuals" } },
-    { name: "KPI dashboards", cat: "bi", in: { smile: "10+ live operational metrics for the owner", rr: "churn, ARPU and network usage for executives", mkt: "AI/BI dashboard for 15+ stakeholders" } },
-    { name: "Excel & Power Query", cat: "bi", in: { rr: "part of the six-report automation" } },
+    { name: "Power BI", cat: "bi", in: { rr: "dashboards for 15+ telecom KPIs", airbnb: "occupancy and pricing visuals", sales: "interactive sales performance reports" } },
+    { name: "KPI dashboards", cat: "bi", in: { smile: "10+ live operational metrics for the owner", rr: "churn, ARPU and network usage for executives", mkt: "AI/BI dashboard for 15+ stakeholders", sales: "sales KPIs, top products and trends" } },
+    { name: "Excel & Power Query", cat: "bi", in: { rr: "part of the six-report automation", sales: "sales data preparation" } },
     { name: "Requirements gathering", cat: "ba", in: { smile: "15+ sessions across clinical and admin teams" } },
     { name: "Process & workflow mapping", cat: "ba", in: { smile: "current/future state across Curve Hero and Weave EHR" } },
     { name: "Stakeholder management", cat: "ba", in: { smile: "owner-dentist plus clinical and admin staff", rr: "cross-functional retention and revenue work", mkt: "15+ dashboard stakeholders" } },
@@ -617,9 +627,10 @@ footer { margin-top: 28px; font: 12px var(--mono); color: var(--muted); text-ali
     $("#plist").innerHTML = projects.map(p => {
       const match = activeTool === "All" || p.tools.includes(activeTool);
       return `<article class="sheet proj ${match ? "" : "dim"}">
-        <div class="stat">${esc(p.stat)}<small>${esc(p.statLbl)}</small></div>
         <h3>${esc(p.name)}</h3><p>${esc(p.blurb)}</p>
+        <div class="stat"><b>${esc(p.stat)}</b>${esc(p.statLbl)}</div>
         <details><summary>How it was built</summary><ul>${p.points.map(x => `<li>${esc(x)}</li>`).join("")}</ul></details>
+        ${p.repo ? `<a class="repo" href="${esc(p.repo)}" target="_blank" rel="noopener">View code on GitHub ↗</a>` : ""}
         <div class="tags">${p.tools.map(t => `<span class="${t === activeTool ? "on" : ""}">${esc(t)}</span>`).join("")}</div>
       </article>`;
     }).join("");
@@ -654,10 +665,10 @@ footer { margin-top: 28px; font: 12px var(--mono); color: var(--muted); text-ali
   const tables = {
     impact: () => table(["metric", "before", "after", "change"], [["no-shows / week", "5–6", "1–2", "≈ −70%"], ["patients / day", "10", "16+", "≈ +80%"], ["retention", "base", "improved", "≈ +30%"], ["reporting hrs / wk", "manual", "automated", "−9 h"]], [1, 2, 3]) + meta(4, "impact"),
     experience: () => table(["role", "org", "from", "to"], [["Business Analyst", "Smile Wellness", "2025-05", "2026-06"], ["Data Analyst", "RR Telecommunication", "2023-01", "2024-05"]], [2, 3]) + meta(2, "experience"),
-    projects: () => table(["project", "headline", "stack"], projects.map(p => [p.name, p.stat, p.tools.slice(0, 2).join(", ")]), [1]) + meta(3, "projects"),
+    projects: () => table(["project", "headline", "stack"], projects.map(p => [p.name, p.stat, p.tools.slice(0, 2).join(", ")]), [1]) + meta(projects.length, "projects"),
     skills: () => table(["skill", "uses"], skills.slice().sort((a, b) => Object.keys(b.in).length - Object.keys(a.in).length).slice(0, 8).map(s => [s.name, Object.keys(s.in).length]), [1]) + `<div class="meta">8 of ${skills.length} rows · <a href="#skills">see the full matrix ↓</a></div>`,
     education: () => table(["degree", "school", "done"], [["MS Data Science", "Stevens Institute of Technology", "2026-05"], ["BE Information Technology", "University of Mumbai", "2024-05"]], [2]) + meta(2, "education"),
-    certifications: () => table(["certificate", "issuer"], [["Data Analytics", "Google"], ["Advanced Data Analytics", "Google"], ["AI Professional Certificate", "Google"], ["Modern Data Engineering with Snowflake", "LinkedIn Learning"]]) + meta(4, "education"),
+    certifications: () => table(["certificate", "issuer"], [["Data Analytics", "Google"], ["Advanced Data Analytics", "Google"], ["AI Professional Certificate", "Google"], ["Modern Data Engineering with Snowflake", "LinkedIn Learning"], ["Data Analyst Associate Cert Prep", "Databricks"]]) + meta(5, "education"),
     contact: () => table(["channel", "value"], [["email", "hingesrushti13@gmail.com"], ["linkedin", "in/srushti-hinge-4b64521a2"], ["location", "Jersey City, NJ"]]) + meta(3, "contact")
   };
   tables.about_me = () => table(["field", "value"], [["name", "Srushti Hinge"], ["role", "Business & Data Analyst"], ["degree", "MS Data Science, Stevens '26"], ["route", "Mumbai → Hoboken → Jersey City"], ["status", "open to analyst roles"]]) + meta(5, "about");
